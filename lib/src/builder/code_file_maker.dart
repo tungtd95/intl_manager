@@ -20,7 +20,7 @@ String _makeGetterCode(String message, String key) {
   key = _filterKey(key);
   Tuple2<String, String> getterParamsInfo = _genGetterParams(message);
   return '''
-  String ${() {
+  static String ${() {
     if (getterParamsInfo.item1 == '()') {
       return 'get $key';
     } else {
