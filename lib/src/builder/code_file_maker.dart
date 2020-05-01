@@ -8,6 +8,7 @@ String _makeClassCodeString(
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
+// ignore_for_file: prefer_expression_function_bodies, prefer_final_locals, prefer_final_in_for_each, prefer_expression_function_bodies, lines_longer_than_80_chars
 class $className {
 $supportedLocaleCode
 $getterCode}
