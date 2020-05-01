@@ -1,6 +1,7 @@
 part of './builder.dart';
 
-String _makeClassCodeString(String className,String supportedLocaleCode, String getterCode) {
+String _makeClassCodeString(
+    String className, String supportedLocaleCode, String getterCode) {
   return '''
 // DO NOT EDIT. This is code generated via package:intl_manager
 
@@ -16,32 +17,67 @@ $getterCode}
 String _makeGetterCode(String message, String key) {
   message = _filterMessage(message);
   key = _filterKey(key);
+  Tuple2<String, String> getterParamsInfo = _genGetterParams(message);
   return '''
-  String get $key => Intl.message('$message', name: '$key');\n''';
+  String ${() {
+    if (getterParamsInfo.item1 == '()') {
+      return 'get $key';
+    } else {
+      return '$key${getterParamsInfo.item1}';
+    }
+  }()} => Intl.message('${getterParamsInfo.item2}', name: '$key');\n''';
+}
+
+Tuple2<String, String> _genGetterParams(String name) {
+  var packedArgs = StringBuffer();
+  packedArgs.write('(');
+  String regexPrintfArg = r'%(?:\d+\$)?[dfsu]';
+  RegExp regExp = new RegExp(regexPrintfArg);
+  var argPosCounter = 0;
+  var result = regExp.firstMatch(name);
+  while (result != null) {
+    var argName = 'strArg$argPosCounter';
+    ++argPosCounter;
+    name = name.replaceRange(result.start, result.end, '\$$argName');
+    packedArgs.write('$argName');
+    result = regExp.firstMatch(name);
+    if (result != null) {
+      packedArgs.write(', ');
+    }
+  }
+  packedArgs.write(')');
+  final res = Tuple2(packedArgs.toString(), name);
+  return res;
+}
+
+void main() {
+  _genGetterParams('');
 }
 
 String _makeSupportedLocaleCode(List<I18nEntity> supportedLocale) {
-  String _supportedLanguageCode='';
+  String _supportedLanguageCode = '';
   int size = supportedLocale.length;
-  for(int i=0;i<size;i++){
+  for (int i = 0; i < size; i++) {
     var l = supportedLocale[i].locale;
-    _supportedLanguageCode+="'${l.languageCode}',";
+    _supportedLanguageCode += "'${l.languageCode}',";
   }
-  if(_supportedLanguageCode.endsWith(',')){
-    _supportedLanguageCode=_supportedLanguageCode.substring(0,_supportedLanguageCode.length-1);
+  if (_supportedLanguageCode.endsWith(',')) {
+    _supportedLanguageCode =
+        _supportedLanguageCode.substring(0, _supportedLanguageCode.length - 1);
   }
   //
-  String _supportedLocaleMap='';
-  for(int i=0;i<size;i++){
+  String _supportedLocaleMap = '';
+  for (int i = 0; i < size; i++) {
     var l = supportedLocale[i].locale;
-    _supportedLocaleMap+="['${l.languageCode}','${l.countryCode??''}'],";
+    _supportedLocaleMap += "['${l.languageCode}','${l.countryCode ?? ''}'],";
   }
-  if(_supportedLocaleMap.endsWith(',')){
-    _supportedLocaleMap=_supportedLocaleMap.substring(0,_supportedLocaleMap.length-1);
+  if (_supportedLocaleMap.endsWith(',')) {
+    _supportedLocaleMap =
+        _supportedLocaleMap.substring(0, _supportedLocaleMap.length - 1);
   }
   return '''
-  static const List<String> _supportedLanguageCode = [${_supportedLanguageCode??''}];
-  static const List<List<String>> _supportedLocaleMap = [${_supportedLocaleMap??''}];
+  static const List<String> _supportedLanguageCode = [${_supportedLanguageCode ?? ''}];
+  static const List<List<String>> _supportedLocaleMap = [${_supportedLocaleMap ?? ''}];
 
   static List<String> getSupportedLanguageCodes(){
     return _supportedLanguageCode;
@@ -56,7 +92,7 @@ String _makeSupportedLocaleCode(List<I18nEntity> supportedLocale) {
   }\n''';
 }
 
-String _filterMessage(String msg){
+String _filterMessage(String msg) {
   msg = msg.replaceAll('\n', '\\n');
   msg = msg.replaceAll('\r', '\\r');
   msg = msg.replaceAll('\t', '\\r');
@@ -64,15 +100,16 @@ String _filterMessage(String msg){
   return msg;
 }
 
-String _filterKey(String key){
-  if(key==null){
+String _filterKey(String key) {
+  if (key == null) {
     return '';
   }
-  return key.trim();
+  print("camel caramel ${ReCase(key.trim()).camelCase}");
+  return ReCase(key.trim()).camelCase;
 }
 
-bool makeDefinesDartCodeFile(
-    File outFile, String className, Map<String, dynamic> arbJson,List<I18nEntity> supportedLocale) {
+bool makeDefinesDartCodeFile(File outFile, String className,
+    Map<String, dynamic> arbJson, List<I18nEntity> supportedLocale) {
   List<String> getters = new List();
   arbJson.forEach((key, value) {
     if (key.startsWith('@')) {
@@ -84,7 +121,8 @@ bool makeDefinesDartCodeFile(
     outFile.createSync();
   }
   String supportedLocaleCode = _makeSupportedLocaleCode(supportedLocale);
-  String contentStr = _makeClassCodeString(className,supportedLocaleCode, getters.join());
+  String contentStr =
+      _makeClassCodeString(className, supportedLocaleCode, getters.join());
   outFile.writeAsStringSync(contentStr);
   return true;
 }

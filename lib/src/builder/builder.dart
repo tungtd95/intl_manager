@@ -4,6 +4,9 @@ import 'package:path/path.dart' as path;
 import 'package:intl_manager/intl_manager.dart';
 
 import 'package:intl_manager/src/builder/xml2arb.dart';
+import 'package:recase/recase.dart';
+import 'package:tuple/tuple.dart';
+
 
 part './code_file_maker.dart';
 
