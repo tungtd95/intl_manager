@@ -1,0 +1,244 @@
+{
+  "@@last_modified": "2020-05-07T17:30:33.282521",
+  "merchantWalletStringsVer": "20200428 - 09:56",
+  "@merchantWalletStringsVer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletHomeTitleMyWallet": "Ví của tôi",
+  "@merchantWalletHomeTitleMyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletHomeLabelUsableBalance": "Chưa quyết toán",
+  "@merchantWalletHomeLabelUsableBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletHomeDesReceiveFrom": "Nhận tiền {strArg0}",
+  "@merchantWalletHomeDesReceiveFrom": {
+    "type": "text",
+    "placeholders": {
+      "strArg0": {}
+    }
+  },
+  "merchantWalletHomeLabelUnsettledBalance": "Khả dụng",
+  "@merchantWalletHomeLabelUnsettledBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletHomeDesFundInFrom": "Nạp tiền từ {strArg0}",
+  "@merchantWalletHomeDesFundInFrom": {
+    "type": "text",
+    "placeholders": {
+      "strArg0": {}
+    }
+  },
+  "merchantWalletHomeDesFundOutTo": "Rút tiền về {strArg0}",
+  "@merchantWalletHomeDesFundOutTo": {
+    "type": "text",
+    "placeholders": {
+      "strArg0": {}
+    }
+  },
+  "merchantWalletHomeDesTransferTo": "Chuyển đến {strArg0}",
+  "@merchantWalletHomeDesTransferTo": {
+    "type": "text",
+    "placeholders": {
+      "strArg0": {}
+    }
+  },
+  "merchantWalletHomeTitleTransactionHistory": "Lịch sử giao dịch",
+  "@merchantWalletHomeTitleTransactionHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletBottomsheetTitleNote": "Ghi chú",
+  "@merchantWalletBottomsheetTitleNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletBottomsheetTitleActualBalance": "Số dư khả dụng",
+  "@merchantWalletBottomsheetTitleActualBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletBottomsheetDes1ActualBalance": "Là phần doanh thu đã quyết toán sau khi trừ đi phí trả cho VinID.",
+  "@merchantWalletBottomsheetDes1ActualBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletBottomsheetDes2ActualBalance": " Bạn có thể rút tiền, nạp tiền, chuyển tiền hoặc thanh toán với số dư này.",
+  "@merchantWalletBottomsheetDes2ActualBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletBottomsheetTitleUnfinalizedBalance": "Số dư chưa quyết toán",
+  "@merchantWalletBottomsheetTitleUnfinalizedBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletBottomsheetDes1UnfinalizedBalance": "Là phần doanh thu chưa quyết toán, chưa trừ đi phí trả cho VinID.",
+  "@merchantWalletBottomsheetDes1UnfinalizedBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletBottomsheetDes2UnfinalizedBalance": " Bạn không thể rút tiền, nạp tiền, chuyển tiền hoặc thanh toán với số dư này.",
+  "@merchantWalletBottomsheetDes2UnfinalizedBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletBottomsheetDes3UnfinalizedBalance": "Sau khi quyết toán, số dư này sẽ chuyển vào số dư khả dụng của bạn.",
+  "@merchantWalletBottomsheetDes3UnfinalizedBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletEmptyTitle": "Trải nghiệm ngay ví VinID Pay thôi!",
+  "@merchantWalletEmptyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletEmptyDes": "Ví thông minh giúp bạn quản lý dòng tiền và kiểm tra số dư hiệu quả.",
+  "@merchantWalletEmptyDes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelTransactionInfo": "Thông tin giao dịch",
+  "@merchantWalletLabelTransactionInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelService": "Dịch vụ",
+  "@merchantWalletLabelService": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelServiceID": "Mã giao dịch",
+  "@merchantWalletLabelServiceID": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelTransactionTime": "Thời gian giao dịch",
+  "@merchantWalletLabelTransactionTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelPaymentInfo": "Thông tin thanh toán",
+  "@merchantWalletLabelPaymentInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelRevenueReceive": "Tổng doanh thu",
+  "@merchantWalletLabelRevenueReceive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelRefund": "Hoàn cho khách",
+  "@merchantWalletLabelRefund": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelFee": "Phí",
+  "@merchantWalletLabelFee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelActualReceive": "Thực nhận",
+  "@merchantWalletLabelActualReceive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelFinalBalance": "Số dư sau GD",
+  "@merchantWalletLabelFinalBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletBottomsheetTitlePickWallet": "Chọn ví",
+  "@merchantWalletBottomsheetTitlePickWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletBottomsheetLabelLocked": "Đã khóa",
+  "@merchantWalletBottomsheetLabelLocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletMsgWalletMaintenanceAt": "Hệ thống ví được bảo trì vào {strArg0} ngày {strArg1}",
+  "@merchantWalletMsgWalletMaintenanceAt": {
+    "type": "text",
+    "placeholders": {
+      "strArg0": {},
+      "strArg1": {}
+    }
+  },
+  "merchantWalletLabelTransactionSuccess": "Giao dịch thành công",
+  "@merchantWalletLabelTransactionSuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelTransactionFailed": "Giao dịch thất bại",
+  "@merchantWalletLabelTransactionFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelTransactionProcessing": "Giao dịch chờ xử lý",
+  "@merchantWalletLabelTransactionProcessing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletTransactionDetailLabelSetteled": "Quyết toán",
+  "@merchantWalletTransactionDetailLabelSetteled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletTransactionDetailLabelTopUp": "Nạp tiền",
+  "@merchantWalletTransactionDetailLabelTopUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletTransactionDetailLabelWithdraw": "Rút tiền",
+  "@merchantWalletTransactionDetailLabelWithdraw": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletTransactionDetailLabelTransfer": "Chuyển tiền",
+  "@merchantWalletTransactionDetailLabelTransfer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletTransactionDetailLabelRefund": "Hoàn tiền",
+  "@merchantWalletTransactionDetailLabelRefund": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletTransactionDetailLabelFundSource": "Nguồn tiền",
+  "@merchantWalletTransactionDetailLabelFundSource": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletTransactionDetailLabelReceiveAccount": "Tài khoản nhận",
+  "@merchantWalletTransactionDetailLabelReceiveAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletTransactionDetailLabelReceiver": "Người nhận",
+  "@merchantWalletTransactionDetailLabelReceiver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelFree": "Miễn phí",
+  "@merchantWalletLabelFree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelMoneyAmount": "Số tiền",
+  "@merchantWalletLabelMoneyAmount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "merchantWalletLabelTotalAmount": "Tổng tiền",
+  "@merchantWalletLabelTotalAmount": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

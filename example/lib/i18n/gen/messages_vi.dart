@@ -19,8 +19,11 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'vi';
 
+  static m0(strArg0, strArg1) => "Hệ thống ví được bảo trì vào ${strArg0} ngày ${strArg1}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-
+    "merchantWalletLabelTransactionSuccess" : MessageLookupByLibrary.simpleMessage("Giao dịch thành công"),
+    "merchantWalletMsgWalletMaintenanceAt" : m0
   };
 }

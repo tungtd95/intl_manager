@@ -17,26 +17,27 @@ $getterCode}
 
 String _makeGetterCode(String message, String key) {
   message = _filterMessage(message);
+  print("MESSSS $message");
   key = _filterKey(key);
   Tuple2<String, String> getterParamsInfo = _genGetterParams(message);
   return '''
-  static String ${() {
-    if (getterParamsInfo.item1 == '()') {
-      return 'get $key';
+  String ${() {
+    if (getterParamsInfo.item1.isEmpty) {
+      return 'get $key => Intl.message("${getterParamsInfo.item2}", name: "$key");\n';
     } else {
-      return '$key${getterParamsInfo.item1}';
+      return '$key(${getterParamsInfo.item1}) => Intl.message("${getterParamsInfo.item2}", name: "$key", args: [${getterParamsInfo.item1}]);\n';
     }
-  }()} => Intl.message('${getterParamsInfo.item2}', name: '$key');\n''';
+  }()}''';
 }
 
 Tuple2<String, String> _genGetterParams(String name) {
   var packedArgs = StringBuffer();
-  packedArgs.write('(');
-  String regexPrintfArg = r'%(?:\d+\$)?[dfsu]';
+  String regexPrintfArg = r'{\S*}';
   RegExp regExp = new RegExp(regexPrintfArg);
   var argPosCounter = 0;
   var result = regExp.firstMatch(name);
   while (result != null) {
+    print("COUNTER $argPosCounter");
     var argName = 'strArg$argPosCounter';
     ++argPosCounter;
     name = name.replaceRange(result.start, result.end, '\$$argName');
@@ -46,7 +47,6 @@ Tuple2<String, String> _genGetterParams(String name) {
       packedArgs.write(', ');
     }
   }
-  packedArgs.write(')');
   final res = Tuple2(packedArgs.toString(), name);
   return res;
 }
@@ -79,7 +79,7 @@ String _makeSupportedLocaleCode(List<I18nEntity> supportedLocale) {
   return '''
   static const List<String> _supportedLanguageCode = [${_supportedLanguageCode ?? ''}];
   static const List<List<String>> _supportedLocaleMap = [${_supportedLocaleMap ?? ''}];
-
+  // ahihi
   static List<String> getSupportedLanguageCodes(){
     return _supportedLanguageCode;
   }

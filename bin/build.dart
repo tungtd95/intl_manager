@@ -78,7 +78,9 @@ main(List<String> args) async {
       genClassFile: genClassFile,
       devLocale: devLocale);
   BuildResult result = builder.build();
+  print("fuck1");
   if (result != null && result.isOk) {
+    print("fuck2");
     var shell = Shell();
     final cmd = 'flutter';
     List<String> args = [
@@ -97,7 +99,9 @@ main(List<String> args) async {
     }
     try {
       await shell.startAndReadAsString(cmd, args);
+      print('build done,please check the outDir:$outDir');
     } catch(e) {
+      print(e.toString());
       print('build done,please check the outDir:$outDir');
     }
   }

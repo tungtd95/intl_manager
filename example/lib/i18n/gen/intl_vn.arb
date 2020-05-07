@@ -1,0 +1,15 @@
+{
+  "@@locale": "vi",
+  "merchantWalletMsgWalletMaintenanceAt": "Hệ thống ví được bảo trì vào {strArg0} ngày {strArg1}",
+  "@merchantWalletMsgWalletMaintenanceAt": {
+    "type": "text",
+    "placeholders": {
+      "strArg0": {},
+      "strArg1": {}
+    }
+  },
+  "merchantWalletLabelTransactionSuccess": "Giao dịch thành công",
+  "@merchantWalletLabelTransactionSuccess": {
+    "type": "text"
+  }
+}
