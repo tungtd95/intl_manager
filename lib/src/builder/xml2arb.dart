@@ -1,5 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
+
+import 'package:recase/recase.dart';
+import 'package:tuple/tuple.dart';
 import 'package:xml/xml.dart' as xml;
+import 'builder.dart';
 
 class Xml2Arb {
   static Map<String, dynamic> convertFromFile(String filePath, String locale) {
@@ -13,6 +18,23 @@ class Xml2Arb {
     return convert(content, locale);
   }
 
+  static Tuple2<List<String>, String> _genGetterParams(String name) {
+    List<String> args = [];
+    String regexPrintfArg = r'%(?:\d+\$)?[dfsu]';
+    RegExp regExp = new RegExp(regexPrintfArg);
+    var argPosCounter = 0;
+    var result = regExp.firstMatch(name);
+    while (result != null) {
+      var argName = 'strArg$argPosCounter';
+      ++argPosCounter;
+      name = name.replaceRange(result.start, result.end, '{$argName}');
+      args.add(argName);
+      result = regExp.firstMatch(name);
+    }
+    final res = Tuple2(args, name);
+    return res;
+  }
+
   static Map<String, dynamic> convert(String stringsXml, String locale) {
     xml.XmlDocument result = xml.parse(stringsXml);
     var stringsList = result.rootElement.children;
@@ -22,8 +44,26 @@ class Xml2Arb {
       String key = getNodeStringKey(se);
       String arbKey = normalizeKeyName(key);
       if (arbKey != null && arbKey.isNotEmpty) {
-        arbJson[arbKey] = checkTextConvert(se.text);
+        Tuple2<List<String>, String> getterParams =
+            _genGetterParams(se.text);
+        arbJson[arbKey] = checkTextConvert(getterParams.item2);
         arbJson['@$arbKey'] = {'type': 'text'};
+        if(getterParams.item1.isNotEmpty) {
+          arbJson['@$arbKey'] = {
+            'placeholders': (){
+              StringBuffer res = StringBuffer()..write('{');
+              for(int i = 0; i < getterParams.item1.length; ++i) {
+                res.write('"${getterParams.item1[i]}" : {}');
+                if(i < getterParams.item1.length - 1) {
+                  res.write(',');
+                }
+              }
+              res.write('}');
+              print(res.toString());
+              return json.decode(res.toString());
+            }()
+          };
+        }
       }
     }
     return arbJson;
@@ -57,24 +97,24 @@ class Xml2Arb {
             charBuffer.add(_convertCharCode);
           } else {
             switch (nextCharCode) {
-              case 116 :
-              case 84 :
+              case 116:
+              case 84:
                 charBuffer.add(_convertCharT);
                 break;
-              case 98 :
-              case 66 :
+              case 98:
+              case 66:
                 charBuffer.add(_convertCharB);
                 break;
-              case 110 :
-              case 78 :
+              case 110:
+              case 78:
                 charBuffer.add(_convertCharN);
                 break;
-              case 97 :
-              case 65 :
+              case 97:
+              case 65:
                 charBuffer.add(_convertCharA);
                 break;
-              case 114 :
-              case 82 :
+              case 114:
+              case 82:
                 charBuffer.add(_convertCharR);
                 break;
             }
@@ -119,6 +159,6 @@ class Xml2Arb {
         sb.write(p.substring(1, p.length));
       }
     }
-    return sb.toString();
+    return ReCase(sb.toString().trim()).camelCase;
   }
 }

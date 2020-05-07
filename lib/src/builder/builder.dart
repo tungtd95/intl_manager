@@ -105,8 +105,8 @@ class IntlBuilder {
       outFile.createSync();
     }
     outFile.writeAsStringSync(jsonStr);
-    if (entity.isDevLanguage) {
-      makeDefinesDartCodeFile(this.outDefineDartFile, this.genClass, jsonObj,i18nEnttitys);
-    }
+//    if (entity.isDevLanguage) {
+//      makeDefinesDartCodeFile(this.outDefineDartFile, this.genClass, jsonObj,i18nEnttitys);
+//    }
   }
 }
