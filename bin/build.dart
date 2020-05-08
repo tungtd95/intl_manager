@@ -78,9 +78,7 @@ main(List<String> args) async {
       genClassFile: genClassFile,
       devLocale: devLocale);
   BuildResult result = builder.build();
-  print("fuck1");
   if (result != null && result.isOk) {
-    print("fuck2");
     var shell = Shell();
     final cmd = 'flutter';
     List<String> args = [
@@ -90,7 +88,7 @@ main(List<String> args) async {
       'intl_translation:generate_from_arb',
       '--output-dir=$outDir',
       '--no-use-deferred-loading',
-      'lib/i18n/gen/$genClassFileName',
+      '$outDir/$genClassFileName',
     ];
 
     for (String fileName in result.arbFilenNames) {

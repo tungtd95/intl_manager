@@ -1,6 +1,6 @@
 {
   "scan-dir": "res/strings",
-  "out-dir": "lib/i18n/gen",
+  "out-dir": "lib/i11n",
   "file-name": "app_strings_define.dart",
   "gen-class": "AppStringsDefine",
   "dev-locale": "vi"
