@@ -23,9 +23,9 @@ String _makeGetterCode(String message, String key) {
   return '''
   String ${() {
     if (getterParamsInfo.item1.isEmpty) {
-      return 'get $key => Intl.message("${getterParamsInfo.item2}", name: "$key");\n';
+      return 'get $key => Intl.message(\'${getterParamsInfo.item2}\', name: \'$key\');\n';
     } else {
-      return '$key(${getterParamsInfo.item1}) => Intl.message("${getterParamsInfo.item2}", name: "$key", args: [${getterParamsInfo.item1}]);\n';
+      return '$key(${getterParamsInfo.item1}) => Intl.message(\'${getterParamsInfo.item2}\', name: \'$key\', args: [${getterParamsInfo.item1}]);\n';
     }
   }()}''';
 }
