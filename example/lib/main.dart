@@ -1,5 +1,5 @@
+import 'package:example/i11n/app_strings.dart';
 import 'package:flutter/material.dart';
-import 'i18n/app_strings.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(MyApp());
