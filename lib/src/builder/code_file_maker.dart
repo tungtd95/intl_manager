@@ -24,7 +24,7 @@ Tuple2<String, String> _makeGetterCode(String message, String key) {
   Tuple2<String, String> getterParamsInfo = _genGetterParams(message);
   return Tuple2(''' ${() {
     if (getterParamsInfo.item1.isEmpty) {
-      return '\'$key\': Intl.message(\'${getterParamsInfo.item2}\', name: \'$camelKey\'),\n';
+      return '\'$camelKey\': Intl.message(\'${getterParamsInfo.item2}\', name: \'$camelKey\'),\n';
     } else {
       return '';
     }
@@ -127,7 +127,6 @@ bool makeDefinesDartCodeFile(File outFile, String className,
       return;
     }
     Tuple2 result = _makeGetterCode(value, key);
-    print('HAHHHHHHAAAAA ${result.item1}');
     stringMapper.add(result.item1);
     getters.add(result.item2);
   });
