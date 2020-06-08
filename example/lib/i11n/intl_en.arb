@@ -1,1 +1,0 @@
-{"@@locale":"en","merchantWalletMsgWalletMaintenanceAt":"Some {strArg0} ngày {strArg1}","@merchantWalletMsgWalletMaintenanceAt":{"type":"text","placeholders":{"strArg0":{},"strArg1":{}}},"merchantWalletLabelTransactionSuccess":"Success","@merchantWalletLabelTransactionSuccess":{"type":"text"}}

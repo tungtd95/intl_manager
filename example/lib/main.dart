@@ -7,7 +7,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Locale defLocale = Locale('vi','VN');
+    Locale defLocale = Locale('vi', 'VN');
     return MaterialApp(
       localizationsDelegates: [
         const AppStringsDelegate(),
@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
       ],
       localeResolutionCallback: (locale, supportedLocales) {
         print("locale change ${locale.languageCode}");
-        for(var supportedLocal in supportedLocales) {
-          if(supportedLocal.languageCode == locale.languageCode) {
+        for (var supportedLocal in supportedLocales) {
+          if (supportedLocal.languageCode == locale.languageCode) {
             print("SUPPORTED");
             AppStrings.load(supportedLocal);
             return supportedLocal;
@@ -25,8 +25,9 @@ class MyApp extends StatelessWidget {
         }
         return defLocale;
       },
-      supportedLocales:  AppStrings.createSupportedLocale(false),
-      onGenerateTitle: (BuildContext context) => AppStrings.of(context).merchantWalletLabelTransactionSuccess,
+      supportedLocales: AppStrings.createSupportedLocale(false),
+      onGenerateTitle: (BuildContext context) => AppStrings.of(context)
+          .keyValues['merchantWalletLabelTransactionSuccess'],
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -55,25 +56,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var scaffold =  Scaffold(
+    var scaffold = Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.of(context).merchantWalletLabelTransactionSuccess),
+        title:
+            Text(AppStrings.of(context).keyValues['merchantWalletLabelTransactionSuccess']),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              AppStrings.of(context).merchantWalletMsgWalletMaintenanceAt('123', '23123'),
+              AppStrings.of(context)
+                  .merchantWalletMsgWalletMaintenanceAt('123', '23123'),
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
             RaisedButton(
-              onPressed: (){
+              onPressed: () {
                 //change locale
-                
               },
               child: Text("Change locale"),
             )
@@ -82,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: AppStrings.of(context).merchantWalletLabelTransactionSuccess,
+        tooltip: AppStrings.of(context).keyValues['merchantWalletLabelTransactionSuccess'],
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

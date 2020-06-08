@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 // ignore_for_file: prefer_expression_function_bodies, prefer_final_locals, prefer_final_in_for_each, prefer_expression_function_bodies, lines_longer_than_80_chars
 class AppStringsDefine {
-  static const List<String> _supportedLanguageCode = ['vi','en'];
-  static const List<List<String>> _supportedLocaleMap = [['vi',''],['en','']];
+  static const List<String> _supportedLanguageCode = ['vi','ru'];
+  static const List<List<String>> _supportedLocaleMap = [['vi',''],['ru','']];
   // ahihi
   static List<String> getSupportedLanguageCodes(){
     return _supportedLanguageCode;
@@ -22,4 +22,9 @@ class AppStringsDefine {
 
   String merchantWalletMsgWalletMaintenanceAt(strArg0, strArg1) => Intl.message('Hệ thống ví được bảo trì vào $strArg0 ngày $strArg1', name: 'merchantWalletMsgWalletMaintenanceAt', args: [strArg0, strArg1]);
   String get merchantWalletLabelTransactionSuccess => Intl.message('Giao dịch thành công', name: 'merchantWalletLabelTransactionSuccess');
+
+  Map<String, String> keyValues = { 
+   'merchantWalletLabelTransactionSuccess': Intl.message('Giao dịch thành công', name: 'merchantWalletLabelTransactionSuccess'),
+
+  };
 }

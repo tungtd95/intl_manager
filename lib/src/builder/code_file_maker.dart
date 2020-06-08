@@ -1,7 +1,7 @@
 part of './builder.dart';
 
-String _makeClassCodeString(
-    String className, String supportedLocaleCode, String getterCode) {
+String _makeClassCodeString(String className, String supportedLocaleCode,
+    String getterCode, String mapperCode) {
   return '''
 // DO NOT EDIT. This is code generated via package:intl_manager
 
@@ -11,23 +11,32 @@ import 'package:flutter/material.dart';
 // ignore_for_file: prefer_expression_function_bodies, prefer_final_locals, prefer_final_in_for_each, prefer_expression_function_bodies, lines_longer_than_80_chars
 class $className {
 $supportedLocaleCode
-$getterCode}
+$getterCode
+  Map<String, String> keyValues = {$mapperCode};
+}
 ''';
 }
 
-String _makeGetterCode(String message, String key) {
+Tuple2<String, String> _makeGetterCode(String message, String key) {
   message = _filterMessage(message);
   print("MESSSS $message");
-  key = _filterKey(key);
+  String camelKey = _filterKey(key);
   Tuple2<String, String> getterParamsInfo = _genGetterParams(message);
-  return '''
+  return Tuple2(''' ${() {
+    if (getterParamsInfo.item1.isEmpty) {
+      return '\'$key\': Intl.message(\'${getterParamsInfo.item2}\', name: \'$camelKey\'),\n';
+    } else {
+      return '';
+    }
+  }()}
+  ''', '''
   String ${() {
     if (getterParamsInfo.item1.isEmpty) {
-      return 'get $key => Intl.message(\'${getterParamsInfo.item2}\', name: \'$key\');\n';
+      return 'get $camelKey => Intl.message(\'${getterParamsInfo.item2}\', name: \'$camelKey\');\n';
     } else {
-      return '$key(${getterParamsInfo.item1}) => Intl.message(\'${getterParamsInfo.item2}\', name: \'$key\', args: [${getterParamsInfo.item1}]);\n';
+      return '$camelKey(${getterParamsInfo.item1}) => Intl.message(\'${getterParamsInfo.item2}\', name: \'$camelKey\', args: [${getterParamsInfo.item1}]);\n';
     }
-  }()}''';
+  }()}''');
 }
 
 Tuple2<String, String> _genGetterParams(String name) {
@@ -112,18 +121,22 @@ String _filterKey(String key) {
 bool makeDefinesDartCodeFile(File outFile, String className,
     Map<String, dynamic> arbJson, List<I18nEntity> supportedLocale) {
   List<String> getters = new List();
+  List<String> stringMapper = List();
   arbJson.forEach((key, value) {
     if (key.startsWith('@')) {
       return;
     }
-    getters.add(_makeGetterCode(value, key));
+    Tuple2 result = _makeGetterCode(value, key);
+    print('HAHHHHHHAAAAA ${result.item1}');
+    stringMapper.add(result.item1);
+    getters.add(result.item2);
   });
   if (!outFile.existsSync()) {
     outFile.createSync();
   }
   String supportedLocaleCode = _makeSupportedLocaleCode(supportedLocale);
-  String contentStr =
-      _makeClassCodeString(className, supportedLocaleCode, getters.join());
+  String contentStr = _makeClassCodeString(
+      className, supportedLocaleCode, getters.join(), stringMapper.join());
   outFile.writeAsStringSync(contentStr);
   return true;
 }
