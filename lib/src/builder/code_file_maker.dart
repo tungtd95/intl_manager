@@ -32,7 +32,7 @@ String _makeGetterCode(String message, String key) {
 
 Tuple2<String, String> _genGetterParams(String name) {
   var packedArgs = StringBuffer();
-  String regexPrintfArg = r'{\S*}';
+  String regexPrintfArg = r'{[a-zA-Z0-9]*}';
   RegExp regExp = new RegExp(regexPrintfArg);
   var argPosCounter = 0;
   var result = regExp.firstMatch(name);
