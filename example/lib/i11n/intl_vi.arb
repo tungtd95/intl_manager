@@ -1,1 +1,1 @@
-{"@@locale":"vi","merchantWalletMsgWalletMaintenanceAt":"Hệ thống ví được bảo trì vào {strArg0} ngày {strArg1}","@merchantWalletMsgWalletMaintenanceAt":{"type":"text","placeholders":{"strArg0":{},"strArg1":{}}},"merchantWalletLabelTransactionSuccess":"Giao dịch thành công","@merchantWalletLabelTransactionSuccess":{"type":"text"}}
+{"@@locale":"vi","changeLocale":"Đổi ","@changeLocale":{"type":"text"},"appTitle":"Ví dụ ","@appTitle":{"type":"text"},"pushedTitle":"Bạn đã bấm nút từng này lần:","@pushedTitle":{"type":"text"},"increment":"Tăng","@increment":{"type":"text"}}

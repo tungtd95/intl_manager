@@ -99,7 +99,6 @@ main(List<String> args) async {
       await shell.startAndReadAsString(cmd, args);
       print('build done,please check the outDir:$outDir');
     } catch(e) {
-      print(e.toString());
       print('build done,please check the outDir:$outDir');
     }
   }

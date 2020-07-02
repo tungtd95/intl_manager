@@ -58,7 +58,6 @@ class Xml2Arb {
                 }
               }
               res.write('}');
-              print(res.toString());
               return json.decode(res.toString());
             }()
           };

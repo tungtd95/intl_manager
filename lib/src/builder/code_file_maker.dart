@@ -17,7 +17,6 @@ $getterCode}
 
 String _makeGetterCode(String message, String key) {
   message = _filterMessage(message);
-  print("MESSSS $message");
   key = _filterKey(key);
   Tuple2<String, String> getterParamsInfo = _genGetterParams(message);
   return '''
@@ -37,7 +36,6 @@ Tuple2<String, String> _genGetterParams(String name) {
   var argPosCounter = 0;
   var result = regExp.firstMatch(name);
   while (result != null) {
-    print("COUNTER $argPosCounter");
     var argName = 'strArg$argPosCounter';
     ++argPosCounter;
     name = name.replaceRange(result.start, result.end, '\$$argName');

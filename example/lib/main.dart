@@ -7,7 +7,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Locale defLocale = Locale('vi','VN');
+    Locale defLocale = Locale('en');
     return MaterialApp(
       localizationsDelegates: [
         const AppStringsDelegate(),
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       localeResolutionCallback: (locale, supportedLocales) {
+        if(locale == null) return null;
         print("locale change ${locale.languageCode}");
         for(var supportedLocal in supportedLocales) {
           if(supportedLocal.languageCode == locale.languageCode) {
@@ -26,26 +27,28 @@ class MyApp extends StatelessWidget {
         return defLocale;
       },
       supportedLocales:  AppStrings.createSupportedLocale(false),
-      onGenerateTitle: (BuildContext context) => AppStrings.of(context).merchantWalletLabelTransactionSuccess,
+
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: MyHomePage(defLocale),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  Locale locale;
+  MyHomePage(this.locale,{Key key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(locale);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  Locale _locale;
 
-  _MyHomePageState();
+  _MyHomePageState(this._locale);
 
   void _incrementCounter() {
     setState(() {
@@ -57,14 +60,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var scaffold =  Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.of(context).merchantWalletLabelTransactionSuccess),
+        title: Text(AppStrings.of(context).appTitle),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              AppStrings.of(context).merchantWalletMsgWalletMaintenanceAt('123', '23123'),
+              AppStrings.of(context).pushedTitle,
             ),
             Text(
               '$_counter',
@@ -73,19 +76,31 @@ class _MyHomePageState extends State<MyHomePage> {
             RaisedButton(
               onPressed: (){
                 //change locale
-                
+                Locale nextLocale;
+                if(_locale.languageCode=='en'){
+                  nextLocale = Locale('vi', '');
+                }else{
+                  nextLocale = Locale('en', '');
+                }
+                AppStrings.load(nextLocale).then((_){
+                  setState(() {
+                    _locale = nextLocale;
+                  });
+                });
               },
-              child: Text("Change locale"),
+              child: Text(AppStrings.of(context).changeLocale),
             )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: AppStrings.of(context).merchantWalletLabelTransactionSuccess,
+        tooltip: AppStrings.of(context).increment,
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-    return scaffold;
+    return Localizations.override(context: context, child: scaffold,
+      locale: _locale,
+    );
   }
 }

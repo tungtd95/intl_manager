@@ -20,6 +20,8 @@ class AppStringsDefine {
     return result;
   }
 
-  String merchantWalletMsgWalletMaintenanceAt(strArg0, strArg1) => Intl.message('Hệ thống ví được bảo trì vào $strArg0 ngày $strArg1', name: 'merchantWalletMsgWalletMaintenanceAt', args: [strArg0, strArg1]);
-  String get merchantWalletLabelTransactionSuccess => Intl.message('Giao dịch thành công', name: 'merchantWalletLabelTransactionSuccess');
+  String get changeLocale => Intl.message('Đổi ', name: 'changeLocale');
+  String get appTitle => Intl.message('Ví dụ ', name: 'appTitle');
+  String get pushedTitle => Intl.message('Bạn đã bấm nút từng này lần:', name: 'pushedTitle');
+  String get increment => Intl.message('Tăng', name: 'increment');
 }
