@@ -8,8 +8,8 @@ dev_dependencies:
   intl_manager: version
 ```
 
-##Build script
-###Build command
+## Build script
+### Build command
 with options being used directly
 ```
 flutter packages pub run intl_manager:build --scan-dir=xx --out-dir=yy --gen-class=zz
@@ -31,7 +31,7 @@ and then run
 flutter packages pub run intl_manager:build
 ```
 
-####Build options
+#### Build options
 ```
 --scan-dir      Directory of crowdin `xml` files. Must be naming with strings-xx.xml format. Where `xx` is a language code.
 
@@ -142,4 +142,4 @@ Locale defLocale = Locale('vi','VN');
 
 After all above step, we can access i18n string by calling `AppStrings.of(context).<stringName>`
 
-There is an isssue with iOS when changing language. The issue is fixed from Flutter SDK 1.17.5: https://github.com/flutter/flutter/issues/39032
+There is a known issue with iOS when changing language because of Flutter SDK. The issue is fixed from Flutter SDK 1.17.5: https://github.com/flutter/flutter/issues/39032
