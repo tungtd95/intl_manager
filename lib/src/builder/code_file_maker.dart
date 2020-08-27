@@ -103,6 +103,12 @@ String _filterKey(String key) {
   if (key == null) {
     return '';
   }
+  try {
+    var numStart = int.parse((key[0]));
+    key = key.replaceRange(0, 1, mapNumToString(numStart));
+  } catch (e) {
+    // ignore
+  }
   print("camel caramel ${ReCase(key.trim()).camelCase}");
   return ReCase(key.trim()).camelCase;
 }
@@ -124,4 +130,27 @@ bool makeDefinesDartCodeFile(File outFile, String className,
       _makeClassCodeString(className, supportedLocaleCode, getters.join());
   outFile.writeAsStringSync(contentStr);
   return true;
+}
+
+String mapNumToString(int num) {
+  switch (num) {
+    case 0:
+      return "zero";
+    case 1:
+      return "one";
+    case 2:
+      return "two";
+    case 3:
+      return "three";
+    case 4:
+      return "four";
+    case 5:
+      return "five";
+    case 6:
+      return "seven";
+    case 8:
+      return "eight";
+    default:
+      return "nine";
+  }
 }
