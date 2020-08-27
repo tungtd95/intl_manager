@@ -104,10 +104,13 @@ String _filterKey(String key) {
     return '';
   }
   try {
+    print("old key = " + key);
     var numStart = int.parse((key[0]));
     key = key.replaceRange(0, 1, mapNumToString(numStart));
+    print("new key = " + key);
   } catch (e) {
     // ignore
+    print("exception parse int");
   }
   print("camel caramel ${ReCase(key.trim()).camelCase}");
   return ReCase(key.trim()).camelCase;
