@@ -103,12 +103,7 @@ String _filterKey(String key) {
   if (key == null) {
     return '';
   }
-  try {
-    var numStart = int.parse((key[0]));
-    key = key.replaceRange(0, 1, mapNumToString(numStart));
-  } catch (e) {
-    // ignore
-  }
+  key = filterFirstNumber(key);
   print("camel caramel ${ReCase(key.trim()).camelCase}");
   return ReCase(key.trim()).camelCase;
 }
@@ -132,7 +127,15 @@ bool makeDefinesDartCodeFile(File outFile, String className,
   return true;
 }
 
-String mapNumToString(int num) {
+String filterFirstNumber(String raw) {
+  if (raw == null) return raw;
+  var numStart = int.tryParse((raw[0]));
+  return numStart == null
+      ? raw
+      : raw.replaceRange(0, 1, mapNumToString(numStart));
+}
+
+String mapNumToString(dynamic num) {
   switch (num) {
     case 0:
       return "zero";
