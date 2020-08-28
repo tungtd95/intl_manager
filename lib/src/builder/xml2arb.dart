@@ -42,12 +42,7 @@ class Xml2Arb {
     for (var se in stringsList) {
       String key = getNodeStringKey(se);
       String arbKey = normalizeKeyName(key);
-      try {
-        var numStart = int.parse((arbKey[0]));
-        arbKey = arbKey.replaceRange(0, 1, mapNumToString(numStart));
-      } catch (e) {
-        // ignore
-      }
+      arbKey = filterFirstNumber(arbKey);
       if (arbKey != null && arbKey.isNotEmpty) {
         Tuple2<List<String>, String> getterParams =
             _genGetterParams(se.text);
